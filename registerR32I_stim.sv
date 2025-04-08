@@ -1,5 +1,5 @@
 // RISCV32I register file module testbench
-module register32I_stim;
+module registerR32I_stim;
 
 timeunit 1ns; timeprecision 10ps;
 
