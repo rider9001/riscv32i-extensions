@@ -5,7 +5,7 @@
 module conditionalR32I #(parameter dataW = 32)
 (
     input logic [dataW-1:0] rs1, rs2,
-    output logic EQ, NE, LT, LTU, GE, UGE     // condition signals, U indicates unsigned comparison
+    output logic EQ, NE, LT, LTU, GE, GEU     // condition signals, U indicates unsigned comparison
 );
 
 timeunit 1ns; timeprecision 10ps;
@@ -27,7 +27,7 @@ assign LT = (rs1Signed < rs2Signed);
 assign GE = !LT;
 
 // Unsigned less than/greater or equal
-assign ULT = (rs1 < rs2);
-assign UGE = !ULT;
+assign LTU = (rs1 < rs2);
+assign GEU = !LTU;
 
 endmodule

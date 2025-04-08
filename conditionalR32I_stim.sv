@@ -18,7 +18,7 @@ parameter dataW = 32;
 logic signed [dataW-1:0] rs1, rs2;
 
 // outputs
-logic EQ, NE, LT, LTU, GE, UGE;
+logic EQ, NE, LT, LTU, GE, GEU;
 
 conditionalR32I cond1
 (
@@ -29,7 +29,7 @@ conditionalR32I cond1
     .LT(LT),
     .LTU(LTU),
     .GE(GE),
-    .UGE(UGE)
+    .GEU(GEU)
 );
 
 initial
@@ -41,6 +41,9 @@ begin
     #CLOCK_P
     rs2 = -6;
     #CLOCK_P
+    rs2 = 98;
+    #CLOCK_P
+    $finish;$stop;
 end
 
 endmodule
