@@ -69,6 +69,11 @@ begin
     #CLOCK_P
     alucode = `CPY;
     #CLOCK_P
+    A = 9;
+    alucode = `SUB;
+    #CLOCK_P
+    B = 10;
+    #CLOCK_P
     $finish;$stop;
 end
 

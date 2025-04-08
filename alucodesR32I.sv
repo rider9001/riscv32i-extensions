@@ -51,3 +51,8 @@
 
 // Note that implementation of AUIPC is implemented by the decoder
 // switching in the PC into the first operand, then using ADD
+
+// SUB, subtract, used for SUB
+// subtracts the first operand from the second
+// only exists as an R-type instruction
+`define SUB    4'd10

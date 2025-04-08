@@ -37,6 +37,8 @@ begin
         `SRA: result = A >>> UB[4:0];
 
         `CPY: result = B;
+
+        `SUB: result = A - B;
     endcase
 end
 
