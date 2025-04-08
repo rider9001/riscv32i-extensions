@@ -55,4 +55,4 @@
 // SUB, subtract, used for SUB
 // subtracts the first operand from the second
 // only exists as an R-type instruction
-`define SUB    4'd10
+`define SUB     4'd10
