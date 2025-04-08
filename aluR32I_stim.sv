@@ -49,7 +49,7 @@ begin
     B = -1;
     #CLOCK_P
     A = 9;
-    B = 4;
+    B = 5;
     alucode = `AND;
     #CLOCK_P
     alucode = `OR;
