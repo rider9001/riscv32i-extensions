@@ -20,7 +20,7 @@ logic signed [dataW-1:0] A,B;
 logic [3:0] alucode;
 
 // outputs
-logic [dataW-1:0] result;
+logic signed [dataW-1:0] result;
 
 aluR32I alu1
 (
@@ -40,8 +40,9 @@ begin
     #CLOCK_P
     A = 2;
     #CLOCK_P
-    A = 9;
     alucode = `SLTU;
+    #CLOCK_P
+    A = 9;
     #CLOCK_P
     A = -1;
     #CLOCK_P
