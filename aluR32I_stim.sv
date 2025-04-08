@@ -26,6 +26,7 @@ aluR32I alu1
 (
     .A(A),
     .B(B),
+    .alucode(alucode),
     .result(result)
 );
 

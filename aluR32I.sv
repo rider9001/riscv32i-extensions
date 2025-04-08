@@ -1,7 +1,7 @@
 // RISCV32I ALU module
 // Doesnt make distinctions based on immediate/register nature of inputs
 `include "alucodesR32I.sv" // Baseline set, opcodes[0-9]
-module alu #(parameter dataW = 32)
+module aluR32I #(parameter dataW = 32)
 (
     input logic signed [dataW-1:0] A, B,    // Two input operands
     input logic [3:0] alucode,              // alucode function selector
