@@ -45,6 +45,7 @@ begin
     #CLOCK_P
     RegWriteAddr = 1;
     RegDataIn = 897;
+    RegWriteControl = 1;
     #CLOCK_P
     RegData1 = 1;
     RegData2 = 2;
@@ -53,6 +54,10 @@ begin
     #CLOCK_P
     RegData1 = 0;
     RegWriteAddr = 0;
+    #CLOCK_P
+    RegWriteAddr = 2;
+    RegDataIn = 65;
+    RegWriteControl = 0;
     #(CLOCK_P*2)
     $finish;$stop;
 end
