@@ -1,0 +1,8 @@
+--JAL and JALR instruction implementation--
+Need to write pc+4 to rd, will implement via a CPY on the ALU and decoder
+swtiching into a +4 writeback path to the register bank
+Version of ALU output unaltered by +4 goes back to PC
+
+--ALU--
+first input can be swtiched between current pc and register 1 output
+second input can be swtiched between decoded immediate and register 2 output
