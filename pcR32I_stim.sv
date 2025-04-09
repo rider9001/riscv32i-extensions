@@ -16,7 +16,7 @@ parameter dataW = 32;
 
 // inputs
 logic PCBranch;
-logic [dataW-1:0] BranchOffset;
+logic signed [dataW-1:0] BranchOffset;
 
 // outputs
 logic [dataW-1:0] ProgAddr;
@@ -43,13 +43,20 @@ begin
     PCBranch = 0;
     #CLOCK_P
     // Test signed rollover behavoiur
-    BranchOffset = 32'b0111_1111_1111_1111_1111_1111_1111_1111;
+    BranchOffset = 32'b0111_1111_1111_1111_1111_1111_1111_1110;
     PCBranch = 1;
     #CLOCK_P
     PCBranch = 0;
     #CLOCK_P
     // Test unsigned rollover behavoiur
     PCBranch = 1;
+    #CLOCK_P
+    PCBranch = 0;
+    #(CLOCK_P*2)
+    BranchOffset = -8;
+    PCBranch = 1;
+    #(CLOCK_P*2)
+    BranchOffset = -2;
     #CLOCK_P
     PCBranch = 0;
     #(CLOCK_P*2)
