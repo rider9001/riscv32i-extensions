@@ -57,6 +57,28 @@ begin
     #CLOCK_P
     EQ = 1;
     #CLOCK_P
+    EQ = 0;
+    #CLOCK_P
+    PCBranchType = `BNEQ;
+    NE = 1;
+    EQ = 1;
+    LT = 1;
+    #CLOCK_P
+    NE = 0;
+    #CLOCK_P
+    LT = 0;
+    EQ = 0;
+    #CLOCK_P
+    GE = 1;
+    LTU = 1;
+    GEU = 1;
+    #CLOCK_P
+    BranchOffset = 24;
+    BranchControl = 0;
+    PCBranchType = `BGEU;
+    #CLOCK_P
+    BranchControl = 1;
+    #CLOCK_P
     $finish;$stop;
 end
 
