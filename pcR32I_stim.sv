@@ -55,7 +55,7 @@ begin
     BranchOffset = 40;
     BranchControl = 1;
     #CLOCK_P
-    BranchControl = `BNEQ;
+    EQ = 1;
     #CLOCK_P
     $finish;$stop;
 end
