@@ -74,6 +74,9 @@ begin
     #CLOCK_P
     B = 10;
     #CLOCK_P
+    A = -78;
+    B = -901;
+    #CLOCK_P
     $finish;$stop;
 end
 

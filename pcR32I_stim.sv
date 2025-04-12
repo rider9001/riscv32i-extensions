@@ -1,4 +1,5 @@
 // RISCV32I PC module testbench
+`include "branchcodes.sv"
 module pcR32I_stim;
 
 timeunit 1ns; timeprecision 10ps;
@@ -15,15 +16,24 @@ always begin clock = 0; #(CLOCK_P/2) clock = 1; #(CLOCK_P/2) clock = 0; end
 parameter dataW = 32;
 
 // inputs
-logic PCBranch;
+logic [2:0] PCBranchType;
 logic signed [dataW-1:0] BranchOffset;
+logic EQ, NE, LT, LTU, GE, GEU;
+logic BranchControl;
 
 // outputs
 logic [dataW-1:0] ProgAddr;
 
 pcR32I pc1
 (
-    .PCBranch(PCBranch),
+    .EQ(EQ),
+    .NE(NE),
+    .LT(LT),
+    .LTU(LTU),
+    .GE(GE),
+    .GEU(GEU),
+    .BranchControl(BranchControl),
+    .PCBranchType(PCBranchType),
     .BranchOffset(BranchOffset),
     .ProgAddr(ProgAddr),
     .reset(reset),
@@ -32,34 +42,21 @@ pcR32I pc1
 
 initial
 begin
-    PCBranch = 0;
+    PCBranchType = `BEQ;
     BranchOffset = 0;
+    EQ = 0;
+    NE = 0;
+    LT = 0;
+    LTU = 0;
+    GE = 0;
+    GEU = 0;
+    BranchControl = 0;
     #(CLOCK_P*3)
-    BranchOffset = 89;
-    PCBranch = 1;
+    BranchOffset = 40;
+    BranchControl = 1;
     #CLOCK_P
-    BranchOffset = 0;
-    #(CLOCK_P*2)
-    PCBranch = 0;
+    BranchControl = `BNEQ;
     #CLOCK_P
-    // Test signed rollover behavoiur
-    BranchOffset = 32'b0111_1111_1111_1111_1111_1111_1111_1110;
-    PCBranch = 1;
-    #CLOCK_P
-    PCBranch = 0;
-    #CLOCK_P
-    // Test unsigned rollover behavoiur
-    PCBranch = 1;
-    #CLOCK_P
-    PCBranch = 0;
-    #(CLOCK_P*2)
-    BranchOffset = -8;
-    PCBranch = 1;
-    #(CLOCK_P*2)
-    BranchOffset = -2;
-    #CLOCK_P
-    PCBranch = 0;
-    #(CLOCK_P*2)
     $finish;$stop;
 end
 

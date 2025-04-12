@@ -46,13 +46,13 @@
 // Will only use lower 5 bits of second operand
 `define SRA     4'd8
 
-// CPY, repeats the value in operand 2, used for LUI
-`define CPY     4'd9
-
-// Note that implementation of AUIPC is implemented by the decoder
-// switching in the PC into the first operand, then using ADD
-
 // SUB, subtract, used for SUB
 // subtracts the first operand from the second
 // only exists as an R-type instruction
-`define SUB     4'd10
+`define SUB     4'd9
+
+// CPY, repeats the value in operand 2, used for LUI
+`define CPY     4'd10
+
+// Note that implementation of AUIPC is implemented by the decoder
+// switching in the PC into the first operand, then using ADD
