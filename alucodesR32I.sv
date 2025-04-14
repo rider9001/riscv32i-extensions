@@ -1,5 +1,7 @@
 // ALU codes for all possible ALU operations
 // 4-bits wide
+// Based off of the returned funct3/7 of the RISCV compiler
+// https://riscvasm.lucasteske.dev/#
 // both inputs will always be 32-bits
 // input switching performed by decoder
 // decoding immediates done via decoder switching
@@ -10,46 +12,46 @@
 
 // SLT, set-less-than, used for STLI and STL
 // result is 1 if operand1 < operand2 signed comparison, else 0
-`define SLT     4'd1
+`define SLT     4'd2
 
 // SLTU, set-less-than-unsigned, used for STLIU and STLU
 // result is 1 if operand1 < operand2 unsigned comparison, else 0
-`define SLTU    4'd2
+`define SLTU    4'd3
 
 // AND, logical and, used for AND and ANDI
 // logically ANDs two operands together
-`define AND     4'd3
+`define AND     4'd7
 
 // OR, logical or, used for OR and ORI
 // logically ORs two operands together
-`define OR      4'd4
+`define OR      4'd6
 
 // XOR, logical xor, used for XOR and XORI
 // logically XORs two operands together
-`define XOR     4'd5
+`define XOR     4'd4
 
-// SSL, shift-left-logical, used for SSL and SSLI
+// SLL, shift-left-logical, used for SLL and SLLI
 // logically shifts first operand left by second
 // (zeros shifted into lower bits)
 // Will only use lower 5 bits of second operand
-`define SSL     4'd6
+`define SLL     4'd1
 
-// SSR, shift-right-logical, used for SSR and SSRI
+// SRL, shift-right-logical, used for SRL and SRLI
 // logically shifts first operand right by second
 // (zeros shifted into upper bits)
 // Will only use lower 5 bits of second operand
-`define SSR     4'd7
+`define SRL     4'd5
 
-// SSR, shift-right-arithemetic, used for SRA and SRAI
+// SRA, shift-right-arithemetic, used for SRA and SRAI
 // arithemetically shifts first operand right by second
 // (sign bit is shifted into upper bits)
 // Will only use lower 5 bits of second operand
-`define SRA     4'd8
+`define SRA     4'd13
 
 // SUB, subtract, used for SUB
 // subtracts the first operand from the second
 // only exists as an R-type instruction
-`define SUB     4'd9
+`define SUB     4'd8
 
 // CPY, repeats the value in operand 2, used for LUI
 `define CPY     4'b1111

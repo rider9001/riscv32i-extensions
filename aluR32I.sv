@@ -30,9 +30,9 @@ begin
 
         `XOR: result = A ^ B;
 
-        `SSL: result = A << UB[4:0];
+        `SLL: result = A << UB[4:0];
 
-        `SSR: result = A >> UB[4:0];
+        `SRL: result = A >> UB[4:0];
 
         `SRA: result = A >>> UB[4:0];
 

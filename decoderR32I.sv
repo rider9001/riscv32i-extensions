@@ -91,7 +91,7 @@ begin
             begin
                 ImmOut = immTypeI;
                 case (funct3)
-                    7: ALUCode = {>>{rawIns[30], 3'b000}};
+                    5: ALUCode = {>>{rawIns[30], funct3}};
                     default: ALUCode = {>>{'b0, funct3}};
                 endcase
                 RegWriteControl = 1;

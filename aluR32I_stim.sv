@@ -57,11 +57,11 @@ begin
     alucode = `XOR;
     #CLOCK_P
     B = 1;
-    alucode = `SSL;
+    alucode = `SLL;
     #CLOCK_P
     B = 3;
     #CLOCK_P
-    alucode = `SSR;
+    alucode = `SRL;
     #CLOCK_P
     alucode = `SRA;
     #CLOCK_P
