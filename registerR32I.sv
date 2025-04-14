@@ -4,9 +4,9 @@ module registerR32I #(parameter dataW = 32)
 (
     input logic clock, reset,
     input logic RegWriteControl,                                        // Writeback control signal
-    input logic [dataW-1:0] RegDataIn,                                  // RegWriteControlback data input
+    input logic [dataW-1:0] RegDataIn,                                  // RegWriteControl data input
     input logic [$clog2(dataW)-1:0] RegData1, RegData2,                 // Register read index
-    input logic [$clog2(dataW)-1:0] RegWriteAddr,                           // Writeback register index
+    input logic [$clog2(dataW)-1:0] RegWriteAddr,                       // Writeback register index
     output logic [dataW-1:0] RegDataOut1, RegDataOut2
 );
 
