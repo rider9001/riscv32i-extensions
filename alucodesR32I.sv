@@ -47,6 +47,7 @@
 // (sign bit is shifted into upper bits)
 // Will only use lower 5 bits of second operand
 `define SRA     4'd13
+// NOTE: on immediate opcode, shares a funct3 with SRL, system will include rawIns[30] as MSB of opcode
 
 // SUB, subtract, used for SUB
 // subtracts the first operand from the second
@@ -55,6 +56,3 @@
 
 // CPY, repeats the value in operand 2, used for LUI
 `define CPY     4'b1111
-
-// Note that implementation of AUIPC is implemented by the decoder
-// switching in the PC into the first operand, then using ADD
