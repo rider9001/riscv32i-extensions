@@ -44,45 +44,30 @@ pcR32I pc1
 initial
 begin
     // OOD, needs re-writing
-    // PCBranchType = `BEQ;
-    // BranchAddr = 0;
-    // AbsoluteBranch = 0;
-    // EQ = 0;
-    // NE = 0;
-    // LT = 0;
-    // LTU = 0;
-    // GE = 0;
-    // GEU = 0;
-    // TestBranch = 0;
-    // #(CLOCK_P*3)
-    // BranchAddr = 40;
-    // TestBranch = 1;
-    // #CLOCK_P
-    // EQ = 1;
-    // #CLOCK_P
-    // EQ = 0;
-    // #CLOCK_P
-    // PCBranchType = `BNEQ;
-    // NE = 1;
-    // EQ = 1;
-    // LT = 1;
-    // #CLOCK_P
-    // NE = 0;
-    // #CLOCK_P
-    // LT = 0;
-    // EQ = 0;
-    // #CLOCK_P
-    // GE = 1;
-    // LTU = 1;
-    // GEU = 1;
-    // #CLOCK_P
-    // BranchAddr = 24;
-    // TestBranch = 0;
-    // PCBranchType = `BGEU;
-    // AbsoluteBranch = 1;
-    // #CLOCK_P
-    // TestBranch = 1;
-    // #CLOCK_P
+    PCBranchType = `BEQ;
+    BranchAddr = 0;
+    AbsoluteBranch = 0;
+    EQ = 0;
+    NE = 0;
+    LT = 0;
+    LTU = 0;
+    GE = 0;
+    GEU = 0;
+    TestBranch = 0;
+    AlwaysBranch = 0;
+    #(CLOCK_P*3)
+    BranchAddr = 64;
+    AlwaysBranch = 1;
+    #(CLOCK_P*2)
+    AbsoluteBranch = 1;
+    #(CLOCK_P*2)
+    AlwaysBranch = 0;
+    AbsoluteBranch = 0;
+    #(CLOCK_P*2)
+    TestBranch = 1;
+    #(CLOCK_P)
+    EQ = 1;
+    #CLOCK_P
     $finish;$stop;
 end
 

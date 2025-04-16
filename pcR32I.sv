@@ -18,6 +18,10 @@ timeunit 1ns; timeprecision 10ps;
 wire [5:0] BranchStatus;
 assign BranchStatus = {GEU, GE, LTU, LT, NE, EQ};
 
+// Branch offset/addr always has the last bit reset
+logic [dataW-1:0] EvenAddr;
+assign EvenAddr = {>>{BranchAddr[31:1], 'b0}};
+
 always_ff @( posedge clock, posedge reset )
 begin
     if (reset) ProgAddr <= 0;
@@ -25,8 +29,8 @@ begin
     begin
         if ((BranchStatus[PCBranchType] && TestBranch) || AlwaysBranch)
         begin
-            if (AbsoluteBranch) ProgAddr <= BranchOffset;
-            else ProgAddr <= ProgAddr + BranchOffset;
+            if (AbsoluteBranch) ProgAddr <= EvenAddr;
+            else ProgAddr <= ProgAddr + EvenAddr;
         end
         else ProgAddr <= ProgAddr + 4;
     end
