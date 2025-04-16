@@ -17,6 +17,7 @@ module decoderR32I #(parameter dataW = 32)
     output logic [2:0] BranchType,                                          // Controls the type of conditional branch
     output logic TestBranch,                                                // PC should branch conditionally based on input from conditional generator
     output logic AlwaysBranch,                                              // PC should always branch when high
+    output logic AbsoluteBranch,                                            // PC should adopt input BranchAddr when high, add to existing PC when low
     // ALU control logic
     output logic UseImm,                                                    // ALU input 2 should be switched from reg2 to ImmOut
     output logic UsePC,                                                     // ALU input 1 should be switched from reg1 to ProgAddr
@@ -81,6 +82,7 @@ begin
     LinkAddrWrite = 0;
     TestBranch = 0;
     AlwaysBranch = 0;
+    AbsoluteBranch = 0;
     UseImm = 0;
     UsePC = 0;
     ALUCode = 0;
@@ -134,6 +136,7 @@ begin
         `JALR:
             begin
                 AlwaysBranch = 1;
+                AbsoluteBranch = 1;
                 ImmOut = immTypeI;
                 UseImm = 1;
                 ALUCode = `ADD;

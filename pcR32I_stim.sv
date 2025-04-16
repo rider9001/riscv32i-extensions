@@ -17,9 +17,9 @@ parameter dataW = 32;
 
 // inputs
 logic [2:0] PCBranchType;
-logic signed [dataW-1:0] BranchOffset;
+logic signed [dataW-1:0] BranchAddr;
 logic EQ, NE, LT, LTU, GE, GEU;
-logic BranchControl;
+logic TestBranch, AlwaysBranch, AbsoluteBranch;
 
 // outputs
 logic [dataW-1:0] ProgAddr;
@@ -32,9 +32,10 @@ pcR32I pc1
     .LTU(LTU),
     .GE(GE),
     .GEU(GEU),
-    .BranchControl(BranchControl),
+    .TestBranch(TestBranch),
     .PCBranchType(PCBranchType),
-    .BranchOffset(BranchOffset),
+    .BranchAddr(BranchAddr),
+    .AbsoluteBranch(AbsoluteBranch),
     .ProgAddr(ProgAddr),
     .reset(reset),
     .clock(clock)
@@ -42,43 +43,46 @@ pcR32I pc1
 
 initial
 begin
-    PCBranchType = `BEQ;
-    BranchOffset = 0;
-    EQ = 0;
-    NE = 0;
-    LT = 0;
-    LTU = 0;
-    GE = 0;
-    GEU = 0;
-    BranchControl = 0;
-    #(CLOCK_P*3)
-    BranchOffset = 40;
-    BranchControl = 1;
-    #CLOCK_P
-    EQ = 1;
-    #CLOCK_P
-    EQ = 0;
-    #CLOCK_P
-    PCBranchType = `BNEQ;
-    NE = 1;
-    EQ = 1;
-    LT = 1;
-    #CLOCK_P
-    NE = 0;
-    #CLOCK_P
-    LT = 0;
-    EQ = 0;
-    #CLOCK_P
-    GE = 1;
-    LTU = 1;
-    GEU = 1;
-    #CLOCK_P
-    BranchOffset = 24;
-    BranchControl = 0;
-    PCBranchType = `BGEU;
-    #CLOCK_P
-    BranchControl = 1;
-    #CLOCK_P
+    // OOD, needs re-writing
+    // PCBranchType = `BEQ;
+    // BranchAddr = 0;
+    // AbsoluteBranch = 0;
+    // EQ = 0;
+    // NE = 0;
+    // LT = 0;
+    // LTU = 0;
+    // GE = 0;
+    // GEU = 0;
+    // TestBranch = 0;
+    // #(CLOCK_P*3)
+    // BranchAddr = 40;
+    // TestBranch = 1;
+    // #CLOCK_P
+    // EQ = 1;
+    // #CLOCK_P
+    // EQ = 0;
+    // #CLOCK_P
+    // PCBranchType = `BNEQ;
+    // NE = 1;
+    // EQ = 1;
+    // LT = 1;
+    // #CLOCK_P
+    // NE = 0;
+    // #CLOCK_P
+    // LT = 0;
+    // EQ = 0;
+    // #CLOCK_P
+    // GE = 1;
+    // LTU = 1;
+    // GEU = 1;
+    // #CLOCK_P
+    // BranchAddr = 24;
+    // TestBranch = 0;
+    // PCBranchType = `BGEU;
+    // AbsoluteBranch = 1;
+    // #CLOCK_P
+    // TestBranch = 1;
+    // #CLOCK_P
     $finish;$stop;
 end
 
