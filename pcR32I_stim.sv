@@ -35,6 +35,7 @@ pcR32I pc1
     .TestBranch(TestBranch),
     .PCBranchType(PCBranchType),
     .BranchAddr(BranchAddr),
+    .AlwaysBranch(AlwaysBranch),
     .AbsoluteBranch(AbsoluteBranch),
     .ProgAddr(ProgAddr),
     .reset(reset),
