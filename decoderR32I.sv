@@ -23,6 +23,9 @@ module decoderR32I #(parameter dataW = 32)
     output logic UsePC,                                                     // ALU input 1 should be switched from reg1 to ProgAddr
     output logic [3:0] ALUCode,                                             // ALU control code to select operation
     output logic [dataW-1:0] ImmOut                                         // Decoded immediate
+    // RAM control logic
+    output logic RAMWrite,                                                  // Flag to indicate to RAM to write incoming value
+    output logic RAMRead                                                    // Flag to switch ALU output into RAMBus
 );
 
 timeunit 1ns; timeprecision 10ps;

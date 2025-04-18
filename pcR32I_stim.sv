@@ -44,7 +44,6 @@ pcR32I pc1
 
 initial
 begin
-    // OOD, needs re-writing
     PCBranchType = `BEQ;
     BranchAddr = 0;
     AbsoluteBranch = 0;
@@ -68,6 +67,10 @@ begin
     TestBranch = 1;
     #(CLOCK_P)
     EQ = 1;
+    #CLOCK_P
+    PCBranchType = `BNEQ;
+    #CLOCK_P
+    NE = 1;
     #CLOCK_P
     $finish;$stop;
 end
