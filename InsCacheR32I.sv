@@ -40,7 +40,7 @@ begin
     // Reset sets the origin to non zero to force a cache read fail and perform an initial reset
     if (reset)
     begin
-        InsCacheAddrOrigin = 32'd99999;
+        InsCacheAddrOrigin = 32'd9999999;
         InsCacheWriteIndx = 0;
     end
     else

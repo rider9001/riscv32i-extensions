@@ -90,6 +90,8 @@ begin
     UsePC = 0;
     ALUCode = 0;
     ImmOut = immTypeI;
+    RAMWrite = 0;
+    RAMRead = 0;
 
     case (opcode)
         `OPPI:
@@ -158,12 +160,20 @@ begin
 
         `LOAD:
             begin
-                // Need to implement RAM hardware
+                RegWriteControl = 1;
+                ImmOut = immTypeI;
+                ALUCode = `ADD;
+                UseImm = 1;
+                RAMRead = 1;
             end
 
         `STORE:
             begin
-                // Need to implement RAM hardware
+                ImmOut = immTypeS;
+                ALUCode = `ADD;
+                UseImm = 1;
+                RAMWrite = 1;
+                RAMRead = 1;
             end
     endcase
 end
