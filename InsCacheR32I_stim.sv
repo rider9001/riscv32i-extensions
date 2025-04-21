@@ -53,13 +53,13 @@ begin
     #CLOCK_P
     InsReadInp = 7;
     #(CLOCK_P*2)
-    ProgAddr = 1;
-    #CLOCK_P
-    ProgAddr = 6;
-    #CLOCK_P
     ProgAddr = 4;
     #CLOCK_P
-    ProgAddr = 32;
+    ProgAddr = 24;
+    #CLOCK_P
+    ProgAddr = 16;
+    #CLOCK_P
+    ProgAddr = 128;
     InsReadInp = 69;
     #(CLOCK_P*10)
     $finish;$stop;
