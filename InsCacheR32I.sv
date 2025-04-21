@@ -11,6 +11,8 @@ module InsCacheR32I #(parameter dataW = 32, parameter CachedIns = 32)
     output logic [dataW-1:0] OutputIns                      // Output instruction to decoder
 );
 
+timeunit 1ns; timeprecision 10ps;
+
 // Instruction cache
 logic [dataW-1:0] InsCache [0:CachedIns-1];
 
@@ -22,7 +24,7 @@ assign InsCacheAddrUpper = InsCacheAddrOrigin + (4 * (CachedIns - 1));
 // Index to read from memory cache, derived from ProgAddr
 logic [$clog2(CachedIns)-1:0] InsCacheIndx;
 // All absolute program addresses are multiples of 4, if not then PC is in an invalid state
-assign InsCacheIndx = [$clog2(CachedIns)-1:0]((ProgAddr - InsCacheAddrOrigin) >> 2);
+assign InsCacheIndx = ((ProgAddr - InsCacheAddrOrigin) >> 2);
 
 // Counter to read and increment over entire range of instruction cache
 logic [$clog2(CachedIns)-1:0] InsCacheWriteIndx;
@@ -42,6 +44,7 @@ begin
     begin
         InsCacheAddrOrigin = 32'd9999999;
         InsCacheWriteIndx = 0;
+        InsCache <= '{default: '0};
     end
     else
     begin

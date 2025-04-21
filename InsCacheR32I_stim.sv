@@ -23,7 +23,7 @@ logic [dataW-1:0] ProgAddr, InsReadInp;
 logic InsCacheStall;
 logic [dataW-1:0] InsCacheReadAddr, OutputIns;
 
-InsCacheR32I InsC1(dataW, CachedIns)
+InsCacheR32I #(dataW, CachedIns) InsC1
 (
     .clock(clock),
     .reset(reset),
