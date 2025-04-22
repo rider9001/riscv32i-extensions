@@ -3,31 +3,51 @@
 // Will try implementing a multi-cycle RAM later
 // Takes the address of the LSBtye and returns 4 bytes
 // Stores all data as bytes, any read lower than 4 is invalid
-module zeroDelayRAM #(parameter dataW = 32, parameter RAMAddrSize = 16)
+// First 16 bytes are reserved as hardware async input/output addresses
+// 0x0 = Inp1, 0x4 = Inp2, 0x8 = Out1, 0xB = Out2
+module zeroDelayRAM #(parameter dataW = 32, parameter RAMAddrSize = 32)
 (
     input logic clock, reset,
-    input [dataW-1:0] RAMAddr, DataIn,
-    input WriteControl,
-    output [dataW-1:0] DataOut
+    input logic [RAMAddrSize-1:0] RAMAddr,
+    input logic [dataW-1:0] DataIn,
+    input logic WriteControl,
+    input logic [dataW-1:0] UsrInpData1, UsrInpData2,
+    output logic [dataW-1:0] DataOut,
+    output logic [dataW-1:0] UsrOutData1, UsrOutData2
 );
 
 timeunit 1ns; timeprecision 10ps;
 
-logic [7:0] RAMArray [0:(1<<RAMAddrSize)];
+// Create version of RAM address shifted into 4 byte per-unit range
+logic [RAMAddrSize-1:0] RAMAddrAdj;
+assign RAMAddrAdj = RAMAddr>>2;
 
-assign DataOut = {RAMArray[RAMAddr - 3], RAMArray[RAMAddr - 2], RAMArray[RAMAddr - 1], RAMArray[RAMAddr]};
+logic [dataW-1:0] RAMArray [3:(1<<(RAMAddrSize>>2))];
+
+always_comb
+begin
+    case (RAMAddrAdj)
+        0: DataOut = UsrInpData1;
+        1: DataOut = UsrInpData2;
+        2: DataOut = UsrOutData1;
+        3: DataOut = UsrOutData2;
+        default: DataOut = RAMArray[RAMAddrAdj];
+    endcase
+end
 
 always_ff @( posedge clock, posedge reset )
 begin
     if (reset)  RAMArray <= '{default: '0};
     else
     begin
-        if (WriteControl)
+        // Writes to input sectors are blocked
+        if (WriteControl && RAMAddrAdj > 1)
         begin
-            RAMArray[RAMAddr - 3] <= DataIn[31:24];
-            RAMArray[RAMAddr - 2] <= DataIn[23:16];
-            RAMArray[RAMAddr - 1] <= DataIn[15:8];
-            RAMArray[RAMAddr] <= DataIn[7:0];
+            case (RAMAddrAdj)
+                2: UsrOutData1 <= DataIn;
+                3: UsrOutData2 <= DataIn;
+                default: RAMArray[RAMAddrAdj] <= DataIn;
+            endcase
         end
     end
 end

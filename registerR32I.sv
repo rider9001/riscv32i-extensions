@@ -7,7 +7,7 @@ module registerR32I #(parameter dataW = 32)
     input logic [dataW-1:0] RegDataIn,                                  // RegWriteControl data input
     input logic [$clog2(dataW)-1:0] RegData1, RegData2,                 // Register read index
     input logic [$clog2(dataW)-1:0] RegWriteAddr,                       // Writeback register index
-    output logic [dataW-1:0] RegDataOut1, RegDataOut2
+    output logic [dataW-1:0] RegDataOut1, RegDataOut2                   // Outputs for register data at indexes 1 and 2
 );
 
 timeunit 1ns; timeprecision 10ps;
