@@ -22,7 +22,7 @@ timeunit 1ns; timeprecision 10ps;
 logic [RAMAddrSize-1:0] RAMAddrAdj;
 assign RAMAddrAdj = RAMAddr>>2;
 
-logic [dataW-1:0] RAMArray [3:(1<<(RAMAddrSize>>2))];
+logic [dataW-1:0] RAMArray [4:((1<<RAMAddrSize)>>2)-1];
 
 always_comb
 begin
@@ -37,7 +37,12 @@ end
 
 always_ff @( posedge clock, posedge reset )
 begin
-    if (reset)  RAMArray <= '{default: '0};
+    if (reset)
+    begin
+        RAMArray <= '{default: '0};
+        UsrOutData1 <= 0;
+        UsrOutData2 <= 0;
+    end
     else
     begin
         // Writes to input sectors are blocked
