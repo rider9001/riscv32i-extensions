@@ -24,7 +24,7 @@ module decoderR32I #(parameter dataW = 32)
     output logic [3:0] ALUCode,                                             // ALU control code to select operation
     output logic [dataW-1:0] ImmOut,                                        // Decoded immediate
     // RAM control logic
-    output logic RAMWriteControl,                                                  // Flag to indicate to RAM to write incoming value
+    output logic RAMWriteControl,                                           // Flag to indicate to RAM to write incoming value
     output logic RAMRead                                                    // Flag to switch ALU output into RAMBus
 );
 
@@ -49,7 +49,7 @@ assign RegWriteAddr = rawIns[11:7];
 assign BranchType = funct3;
 
 // Wiring to decode different immediate types
-logic [dataW-1:0] immTypeI, immtypeS, immtypeB, immtypeU, immtypeJ;
+logic [dataW-1:0] immTypeI, immTypeS, immTypeB, immTypeU, immTypeJ;
 
 // sign extender hardware
 logic [19:0] IStypeSign;
@@ -67,16 +67,16 @@ signExtender s1
 assign immTypeI = {>>{IStypeSign, rawIns[31:20]}};
 
 // S (store) - type immediate
-assign immtypeS = {>>{IStypeSign, rawIns[31:25], rawIns[11:7]}};
+assign immTypeS = {>>{IStypeSign, rawIns[31:25], rawIns[11:7]}};
 
 // B (Branch) - type immediate
-assign immtypeB = {>>{BTypeSign, rawIns[31], rawIns[7], rawIns[30:25], rawIns[11:8], 1'd0}};
+assign immTypeB = {>>{BTypeSign, rawIns[31], rawIns[7], rawIns[30:25], rawIns[11:8], 1'd0}};
 
 // U (load upper) - type immediate
-assign immtypeU = {>>{rawIns[31:12], 12'd0}};
+assign immTypeU = {>>{rawIns[31:12], 12'd0}};
 
 // J (jump) - type immediate
-assign immtypeJ = {>>{JTypeSign, rawIns[31], rawIns[19:12], rawIns[20], rawIns[30:21], 1'd0}};
+assign immTypeJ = {>>{JTypeSign, rawIns[31], rawIns[19:12], rawIns[20], rawIns[30:21], 1'd0}};
 
 always_comb
 begin
@@ -113,7 +113,7 @@ begin
 
         `LUI:
             begin
-                ImmOut = immtypeU;
+                ImmOut = immTypeU;
                 UseImm = 1;
                 RegWriteControl = 1;
                 ALUCode = `CPY;
@@ -121,7 +121,7 @@ begin
 
         `AUIPC:
             begin
-                ImmOut = immtypeU;
+                ImmOut = immTypeU;
                 UseImm = 1;
                 UsePC = 1;
                 RegWriteControl = 1;
@@ -131,7 +131,7 @@ begin
         `JAL:
             begin
                 AlwaysBranch = 1;
-                ImmOut = immtypeJ;
+                ImmOut = immTypeJ;
                 UseImm = 1;
                 ALUCode = `CPY;
                 LinkAddrWrite = 1;
@@ -152,7 +152,7 @@ begin
         `BRANCH:
             begin
                 TestBranch = 1;
-                ImmOut = immtypeB;
+                ImmOut = immTypeB;
                 UsePC = 1;
                 UseImm = 1;
                 ALUCode = `ADD;
