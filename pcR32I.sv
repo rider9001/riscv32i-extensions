@@ -21,7 +21,7 @@ assign BranchStatus = {GEU, GE, LTU, LT, NE, EQ};
 
 // Branch offset/addr always has the last bit reset
 logic [dataW-1:0] EvenAddr;
-assign EvenAddr = {>>{BranchAddr[31:1], 'b0}};
+assign EvenAddr = {>>{BranchAddr[31:1], 1'b0}};
 
 always_ff @( posedge clock, posedge reset )
 begin

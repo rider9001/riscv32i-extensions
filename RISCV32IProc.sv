@@ -31,7 +31,7 @@ wire [dataW-1:0] ProgAddr;
 wire [RAMAddrSize-1:0] InsCacheReadAddr;
 
 // Cache -> Decoder instruction wire
-wire [dataW-1:0] rawIns;
+wire [dataW-1:0] OutputIns;
 
 // ALU result wire
 wire [dataW-1:0] ALUResult;
@@ -84,7 +84,7 @@ assign RegDataInPre = RAMRegRead ? RAMOut : ALUResult;
 // Decoder definintion
 decoderR32I #(dataW) dec1
 (
-    .rawIns(rawIns),
+    .rawIns(OutputIns),
     .RegData1(RegData1),
     .RegData2(RegData2),
     .RegWriteAddr(RegWriteAddr),
@@ -137,8 +137,8 @@ InsCacheR32I #(dataW, CachedIns) InsC1
 // Conditional generator definition
 conditionalR32I #(dataW) cond1
 (
-    .rs1(rs1),
-    .rs2(rs2),
+    .rs1(RegData1),
+    .rs2(RegData2),
     .EQ(EQ),
     .NE(NE),
     .LT(LT),
@@ -167,7 +167,7 @@ aluR32I #(dataW) alu1
     .A(ALUIn1),
     .B(ALUIn2),
     .ALUCode(ALUCode),
-    .result(result)
+    .result(ALUResult)
 );
 
 // RAM definition
@@ -176,7 +176,7 @@ zeroDelayRAM #(dataW, RAMAddrSize, ROMFile) ram1
     .clock(clock),
     .reset(reset),
     .RAMAddr(RAMAddr),
-    .DataIn(DataIn),
+    .DataIn(RegData2),
     .RAMWriteControl(RAMWriteControl),
     .InpWord1(InpWord1),
     .InpWord2(InpWord2),
