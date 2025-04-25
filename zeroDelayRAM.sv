@@ -47,7 +47,7 @@ begin
         RAMArray <= '{default: '0};
         OutWord1 <= 0;
         OutWord2 <= 0;
-        #1 $readmemh(ROMFile, RAMArray);
+        $readmemh(ROMFile, RAMArray);
     end
     else
     begin
