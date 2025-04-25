@@ -45,9 +45,9 @@ begin
     begin
         // Read program memory into RAM and zero all other memory
         RAMArray <= '{default: '0};
-        $readmemh(ROMFile, RAMArray);
         OutWord1 <= 0;
         OutWord2 <= 0;
+        #1 $readmemh(ROMFile, RAMArray);
     end
     else
     begin
