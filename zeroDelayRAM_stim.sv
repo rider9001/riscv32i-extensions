@@ -14,6 +14,7 @@ always begin clock = 0; #(CLOCK_P/2) clock = 1; #(CLOCK_P/2) clock = 0; end
 
 parameter dataW = 32;
 parameter RAMAddrSize = 8;
+parameter ROMFile = "progR32I.hex";
 
 // inputs
 logic [RAMAddrSize-1:0] RAMAddr;
@@ -23,7 +24,7 @@ logic RAMWriteControl;
 // outputs
 logic [dataW-1:0] RAMOut, OutWord1, OutWord2;
 
-zeroDelayRAM #(dataW, RAMAddrSize) ram1
+zeroDelayRAM #(dataW, RAMAddrSize, ROMFile) ram1
 (
     .reset(reset),
     .clock(clock),
