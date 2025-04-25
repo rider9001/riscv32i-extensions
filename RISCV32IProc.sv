@@ -38,7 +38,7 @@ wire [dataW-1:0] ALUResult;
 
 // ALU -> PC branch address
 wire [dataW-1:0] BranchAddr;
-assign BranchAddr = {>>{ALUResult[dataW-1:1], 'b0}};
+assign BranchAddr = {>>{ALUResult[dataW-1:1], 1'b0}};
 
 // RAM output wire
 wire [dataW-1:0] RAMOut;
