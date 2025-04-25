@@ -137,8 +137,8 @@ InsCacheR32I #(dataW, CachedIns) InsC1
 // Conditional generator definition
 conditionalR32I #(dataW) cond1
 (
-    .rs1(RegData1),
-    .rs2(RegData2),
+    .rs1(RegData1Out),
+    .rs2(RegData2Out),
     .EQ(EQ),
     .NE(NE),
     .LT(LT),
@@ -176,7 +176,7 @@ zeroDelayRAM #(dataW, RAMAddrSize, ROMFile) ram1
     .clock(clock),
     .reset(reset),
     .RAMAddr(RAMAddr),
-    .DataIn(RegData2),
+    .DataIn(RegDataOut2),
     .RAMWriteControl(RAMWriteControl),
     .InpWord1(InpWord1),
     .InpWord2(InpWord2),
