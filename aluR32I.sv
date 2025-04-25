@@ -4,7 +4,7 @@
 module aluR32I #(parameter dataW = 32)
 (
     input logic signed [dataW-1:0] A, B,    // Two input operands
-    input logic [3:0] alucode,              // alucode function selector
+    input logic [3:0] ALUCode,              // alucode function selector
     output logic [dataW-1:0] result         // result of operation
 );
 
@@ -17,7 +17,7 @@ assign UB = B;
 
 always_comb
 begin
-    case (alucode)
+    case (ALUCode)
         `ADD: result = A + B;
 
         `SLT: result = (A < B);
