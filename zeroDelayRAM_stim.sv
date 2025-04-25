@@ -18,7 +18,7 @@ parameter RAMAddrSize = 8;
 // inputs
 logic [RAMAddrSize-1:0] RAMAddr;
 logic [dataW-1:0] DataIn, InpWord1, InpWord2;
-logic WriteControl;
+logic RAMWriteControl;
 
 // outputs
 logic [dataW-1:0] RAMOut, OutWord1, OutWord2;
@@ -31,7 +31,7 @@ zeroDelayRAM #(dataW, RAMAddrSize) ram1
     .DataIn(DataIn),
     .InpWord1(InpWord1),
     .InpWord2(InpWord2),
-    .WriteControl(WriteControl),
+    .RAMWriteControl(RAMWriteControl),
     .RAMOut(RAMOut),
     .OutWord1(OutWord1),
     .OutWord2(OutWord2)
@@ -43,25 +43,25 @@ begin
     DataIn = 0;
     InpWord1 = 0;
     InpWord2 = 0;
-    WriteControl = 0;
+    RAMWriteControl = 0;
     #CLOCK_P
     InpWord1 = 87;
     #CLOCK_P
     DataIn = 55;
-    WriteControl = 1;
+    RAMWriteControl = 1;
     #CLOCK_P
     RAMAddr = 8;
     #CLOCK_P
-    WriteControl = 0;
+    RAMWriteControl = 0;
     RAMAddr = 64;
     #CLOCK_P
     DataIn = 90;
-    WriteControl = 1;
+    RAMWriteControl = 1;
     #CLOCK_P
     DataIn = 91;
     RAMAddr = 68;
     #CLOCK_P
-    WriteControl = 0;
+    RAMWriteControl = 0;
     RAMAddr = 64;
     #CLOCK_P
     RAMAddr = 68;
