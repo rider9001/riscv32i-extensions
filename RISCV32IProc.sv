@@ -137,8 +137,8 @@ InsCacheR32I #(dataW, CachedIns) InsC1
 // Conditional generator definition
 conditionalR32I #(dataW) cond1
 (
-    .rs1(RegData1Out),
-    .rs2(RegData2Out),
+    .rs1(RegDataOut1),
+    .rs2(RegDataOut2),
     .EQ(EQ),
     .NE(NE),
     .LT(LT),
