@@ -10,7 +10,7 @@ module decoderR32I #(parameter dataW = 32)
 (
     input logic [dataW-1:0] rawIns,                                         // Complete instruction
     // Register control
-    output logic [$clog2(dataW)-1:0] RegData1, RegData2, RegWriteAddr       // Register addresses
+    output logic [$clog2(dataW)-1:0] RegData1, RegData2, RegWriteAddr,      // Register addresses
     output logic RegWriteControl,                                           // Register write enable
     output logic LinkAddrWrite,                                             // +4 Offset write to create return addresses
     // PC control logic
