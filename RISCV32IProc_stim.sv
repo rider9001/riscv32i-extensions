@@ -15,7 +15,7 @@ always begin clock = 0; #(CLOCK_P/2) clock = 1; #(CLOCK_P/2) clock = 0; end
 parameter dataW = 32;
 parameter RAMAddrSize = 32;
 parameter CachedIns = 32;
-parameter ROMFile = "progR32I.hex"
+parameter ROMFile = "progR32I.hex";
 
 // inputs
 logic [dataW-1:0] InpWord1, InpWord2;

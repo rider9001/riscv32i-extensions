@@ -3,8 +3,8 @@
 // RSICV opcodes are broken across the instruction to speed decoding
 // Opcodes are more for determining the instruction type, decoders job is then
 // figuring out immdiates and wether to include funct7 to funct3 for ALU
-`include "opcodesR23I.sv"
-`include "alucodesR23I.sv"
+`include "opcodesR32I.sv"
+`include "alucodesR32I.sv"
 `include "branchcodes.sv"
 module decoderR32I #(parameter dataW = 32)
 (
@@ -22,7 +22,7 @@ module decoderR32I #(parameter dataW = 32)
     output logic UseImm,                                                    // ALU input 2 should be switched from reg2 to ImmOut
     output logic UsePC,                                                     // ALU input 1 should be switched from reg1 to ProgAddr
     output logic [3:0] ALUCode,                                             // ALU control code to select operation
-    output logic [dataW-1:0] ImmOut                                         // Decoded immediate
+    output logic [dataW-1:0] ImmOut,                                        // Decoded immediate
     // RAM control logic
     output logic RAMWriteControl,                                                  // Flag to indicate to RAM to write incoming value
     output logic RAMRead                                                    // Flag to switch ALU output into RAMBus

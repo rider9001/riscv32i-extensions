@@ -31,7 +31,7 @@ begin
     begin
         if (!InsCacheStall)
         begin
-            if ((BranchStatus[PCBranchType] && TestBranch) || AlwaysBranch)
+            if ((BranchStatus[BranchType] && TestBranch) || AlwaysBranch)
             begin
                 if (AbsoluteBranch) ProgAddr <= EvenAddr;
                 else ProgAddr <= ProgAddr + EvenAddr;
