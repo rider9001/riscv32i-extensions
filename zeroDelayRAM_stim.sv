@@ -17,11 +17,11 @@ parameter RAMAddrSize = 8;
 
 // inputs
 logic [RAMAddrSize-1:0] RAMAddr;
-logic [dataW-1:0] DataIn, UsrInpData1, UsrInpData2;
+logic [dataW-1:0] DataIn, InpWord1, InpWord2;
 logic WriteControl;
 
 // outputs
-logic [dataW-1:0] DataOut, UsrOutData1, UsrOutData2;
+logic [dataW-1:0] RAMOut, OutWord1, OutWord2;
 
 zeroDelayRAM #(dataW, RAMAddrSize) ram1
 (
@@ -29,23 +29,23 @@ zeroDelayRAM #(dataW, RAMAddrSize) ram1
     .clock(clock),
     .RAMAddr(RAMAddr),
     .DataIn(DataIn),
-    .UsrInpData1(UsrInpData1),
-    .UsrInpData2(UsrInpData2),
+    .InpWord1(InpWord1),
+    .InpWord2(InpWord2),
     .WriteControl(WriteControl),
-    .DataOut(DataOut),
-    .UsrOutData1(UsrOutData1),
-    .UsrOutData2(UsrOutData2)
+    .RAMOut(RAMOut),
+    .OutWord1(OutWord1),
+    .OutWord2(OutWord2)
 );
 
 initial
 begin
     RAMAddr = 0;
     DataIn = 0;
-    UsrInpData1 = 0;
-    UsrInpData2 = 0;
+    InpWord1 = 0;
+    InpWord2 = 0;
     WriteControl = 0;
     #CLOCK_P
-    UsrInpData1 = 87;
+    InpWord1 = 87;
     #CLOCK_P
     DataIn = 55;
     WriteControl = 1;
