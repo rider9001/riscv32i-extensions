@@ -7,6 +7,8 @@ module signExtender
     output logic [10:0] JTypeSign       // 11 bit wide sign
 );
 
+timeunit 1ns; timeprecision 10ps;
+
 assign IStypeSign = sign ? 20'b1111_1111_1111_1111_11 : 20'd0;
 assign BTypeSign = sign ? 19'b1111_1111_1111_1111_1 : 19'd0;
 assign JTypeSign = sign ? 11'b1111_1111_111 : 11'd0;
