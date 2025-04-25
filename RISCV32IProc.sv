@@ -128,7 +128,7 @@ InsCacheR32I #(dataW, CachedIns) InsC1
     .clock(clock),
     .reset(reset),
     .ProgAddr(ProgAddr),
-    .InsReadInp(InsReadInp),
+    .InsReadInp(RAMOut),
     .InsCacheStall(InsCacheStall),
     .InsCacheReadAddr(InsCacheReadAddr),
     .OutputIns(OutputIns)
