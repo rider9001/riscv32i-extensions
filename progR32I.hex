@@ -1,6 +1,25 @@
-3e800093 // x1  = 1000 0x3E8
-7d008113 // x2  = 3000 0xBB8
-c1810193 // x3  = 2000 0x7D0
-83018213 // x4  = 0    0x000
-3e820293 // x5  = 1000 0x3E8
-01000067 // JALR x0, x0, 16 (Jump to zero+16)
+// Due to byte array nature of RAM, each instruction needs to be split over 4 lines
+3e
+80
+00
+93 // x1  = 1000 0x3E8
+7d
+00
+81
+13 // x2  = 3000 0xBB8
+c1
+81
+01
+93 // x3  = 2000 0x7D0
+83
+01
+82
+13 // x4  = 0    0x000
+3e
+82
+02
+93 // x5  = 1000 0x3E8
+00
+00
+00
+67 // JALR x0, x0, 16 (Jump to zero)

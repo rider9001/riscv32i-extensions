@@ -13,7 +13,7 @@ initial begin reset = 0; #10 reset = 1; #10 reset = 0; end
 always begin clock = 0; #(CLOCK_P/2) clock = 1; #(CLOCK_P/2) clock = 0; end
 
 parameter dataW = 32;
-parameter RAMAddrSize = 32;
+parameter RAMAddrSize = 8;
 parameter ROMFile = "progR32I.hex";
 
 // inputs
