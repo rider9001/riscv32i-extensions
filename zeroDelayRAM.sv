@@ -43,8 +43,7 @@ always_ff @( posedge clock, posedge reset )
 begin
     if (reset)
     begin
-        // Read program memory into RAM and zero all other memory
-        RAMArray <= '{default: '0};
+        // Read program memory into RAM
         OutWord1 <= 0;
         OutWord2 <= 0;
         $readmemh(ROMFile, RAMArray);
