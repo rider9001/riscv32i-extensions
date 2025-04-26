@@ -25,8 +25,7 @@ assign EvenAddr = {>>{BranchAddr[31:1], 1'b0}};
 
 always_ff @( posedge clock, posedge reset )
 begin
-    // RAM starts at 0x10, first 16 bytes reserved as user input
-    if (reset) ProgAddr <= 16;
+    if (reset) ProgAddr <= 0;
     else
     begin
         if (!InsCacheStall)
