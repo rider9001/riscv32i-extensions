@@ -26,7 +26,7 @@ timeunit 1ns; timeprecision 10ps;
 logic [RAMAddrSize-1:0] RAMAddrAdj;
 assign RAMAddrAdj = RAMAddr>>2;
 
-logic [dataW-1:0] RAMArray [4:((1<<RAMAddrSize)>>2)-1];
+logic [dataW-1:0] RAMArray [4:(1<<(RAMAddrSize>>1))-1];
 
 always_comb
 begin
