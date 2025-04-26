@@ -2,7 +2,7 @@
 module RISCV32IProc
 #(
 parameter dataW = 32,
-parameter RAMAddrSize = 32,
+parameter RAMAddrSize = 16,
 parameter CachedIns = 32,
 parameter ROMFile = "no_file_loaded.hex"
 )

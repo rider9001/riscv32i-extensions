@@ -3,7 +3,7 @@
 // RAM is treated as unintialized execpt for 0->prog length on reset
 module zeroDelayRAM #(
 parameter dataW = 32,
-parameter RAMAddrSize = 32,
+parameter RAMAddrSize = 16,
 parameter ROMFile = "no_file_loaded.hex"
 )
 (
@@ -16,8 +16,10 @@ parameter ROMFile = "no_file_loaded.hex"
 
 timeunit 1ns; timeprecision 10ps;
 
+
+localparam int RAM_MAX_ADDR = (1<<RAMAddrSize)-1;
 // Byte array to allow nonaligned acsesses
-logic [7:0] RAMArray [0:(1<<RAMAddrSize)-1];
+logic [7:0] RAMArray [0:RAM_MAX_ADDR];
 
 // Memory is treated as big endian
 assign RAMOut = {>>{RAMArray[RAMAddr], RAMArray[RAMAddr+1], RAMArray[RAMAddr+2], RAMArray[RAMAddr+3]}};
