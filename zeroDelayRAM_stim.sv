@@ -18,11 +18,11 @@ parameter ROMFile = "progR32I.hex";
 
 // inputs
 logic [RAMAddrSize-1:0] RAMAddr;
-logic [dataW-1:0] DataIn, InpWord1, InpWord2;
+logic [dataW-1:0] DataIn;
 logic RAMWriteControl;
 
 // outputs
-logic [dataW-1:0] RAMOut, OutWord1, OutWord2;
+logic [dataW-1:0] RAMOut;
 
 zeroDelayRAM #(dataW, RAMAddrSize, ROMFile) ram1
 (
@@ -30,23 +30,15 @@ zeroDelayRAM #(dataW, RAMAddrSize, ROMFile) ram1
     .clock(clock),
     .RAMAddr(RAMAddr),
     .DataIn(DataIn),
-    .InpWord1(InpWord1),
-    .InpWord2(InpWord2),
     .RAMWriteControl(RAMWriteControl),
-    .RAMOut(RAMOut),
-    .OutWord1(OutWord1),
-    .OutWord2(OutWord2)
+    .RAMOut(RAMOut)
 );
 
 initial
 begin
     RAMAddr = 0;
     DataIn = 0;
-    InpWord1 = 0;
-    InpWord2 = 0;
     RAMWriteControl = 0;
-    #CLOCK_P
-    InpWord1 = 87;
     #CLOCK_P
     DataIn = 55;
     RAMWriteControl = 1;

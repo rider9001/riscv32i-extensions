@@ -7,9 +7,7 @@ parameter CachedIns = 32,
 parameter ROMFile = "no_file_loaded.hex"
 )
 (
-    input logic clock, reset,
-    input logic [dataW-1:0] InpWord1, InpWord2,
-    output logic [dataW-1:0] OutWord1, OutWord2
+    input logic clock, reset
 );
 
 timeunit 1ns; timeprecision 10ps;
@@ -178,11 +176,7 @@ zeroDelayRAM #(dataW, RAMAddrSize, ROMFile) ram1
     .RAMAddr(RAMAddr),
     .DataIn(RegDataOut2),
     .RAMWriteControl(RAMWriteControl),
-    .InpWord1(InpWord1),
-    .InpWord2(InpWord2),
-    .RAMOut(RAMOut),
-    .OutWord1(OutWord1),
-    .OutWord2(OutWord2)
+    .RAMOut(RAMOut)
 );
 
 endmodule

@@ -1,10 +1,6 @@
 // Zero delay RAM module
 // implemented as a test tool for the RSICV32I processor
-// Will try implementing a multi-cycle RAM later
-// Takes the address of the LSBtye and returns 4 bytes
-// Stores all data as bytes, any read lower than 4 is invalid
-// First 16 bytes are reserved as hardware async input/output addresses
-// 0x0 = Inp1, 0x4 = Inp2, 0x8 = Out1, 0xB = Out2
+// RAM is treated as unintialized execpt for 0->prog length on reset
 module zeroDelayRAM #(
 parameter dataW = 32,
 parameter RAMAddrSize = 32,
@@ -15,49 +11,32 @@ parameter ROMFile = "no_file_loaded.hex"
     input logic [RAMAddrSize-1:0] RAMAddr,
     input logic [dataW-1:0] DataIn,
     input logic RAMWriteControl,
-    input logic [dataW-1:0] InpWord1, InpWord2,
-    output logic [dataW-1:0] RAMOut,
-    output logic [dataW-1:0] OutWord1, OutWord2
+    output logic [dataW-1:0] RAMOut
 );
 
 timeunit 1ns; timeprecision 10ps;
 
-// Create version of RAM address shifted into 4 byte per-unit range
-logic [RAMAddrSize-1:0] RAMAddrAdj;
-assign RAMAddrAdj = RAMAddr>>2;
+// Byte array to allow nonaligned acsesses
+logic [7:0] RAMArray [0:(1<<RAMAddrSize)-1];
 
-logic [dataW-1:0] RAMArray [4:(1<<(RAMAddrSize>>1))-1];
-
-always_comb
-begin
-    case (RAMAddrAdj)
-        0: RAMOut = InpWord1;
-        1: RAMOut = InpWord2;
-        2: RAMOut = OutWord1;
-        3: RAMOut = OutWord2;
-        default: RAMOut = RAMArray[RAMAddrAdj];
-    endcase
-end
+// Memory is treated as big endian
+assign RAMOut = {>>{RAMArray[RAMAddr], RAMArray[RAMAddr+1], RAMArray[RAMAddr+2], RAMArray[RAMAddr+3]}};
 
 always_ff @( posedge clock, posedge reset )
 begin
     if (reset)
     begin
         // Read program memory into RAM
-        OutWord1 <= 0;
-        OutWord2 <= 0;
         $readmemh(ROMFile, RAMArray);
     end
     else
     begin
-        // Writes to input sectors are blocked
-        if (RAMWriteControl && RAMAddrAdj > 1)
+        if (RAMWriteControl)
         begin
-            case (RAMAddrAdj)
-                2: OutWord1 <= DataIn;
-                3: OutWord2 <= DataIn;
-                default: RAMArray[RAMAddrAdj] <= DataIn;
-            endcase
+            RAMArray[RAMAddr] <= DataIn[31:24];
+            RAMArray[RAMAddr+1] <= DataIn[23:16];
+            RAMArray[RAMAddr+2] <= DataIn[15:8];
+            RAMArray[RAMAddr+3] <= DataIn[7:0];
         end
     end
 end
