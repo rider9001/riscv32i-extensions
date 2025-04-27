@@ -155,7 +155,7 @@ begin
                 ImmOut = immTypeB;
                 UsePC = 1;
                 UseImm = 1;
-                ALUCode = `ADD;
+                ALUCode = `CPY;
             end
 
         `LOAD:
