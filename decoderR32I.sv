@@ -52,25 +52,23 @@ assign BranchType = funct3;
 logic [dataW-1:0] immTypeI, immTypeS, immTypeB, immTypeU, immTypeJ;
 
 // sign extender hardware
-logic [19:0] IStypeSign;
-logic [18:0] BTypeSign;
+logic [19:0] ISBtypeSign;
 logic [10:0] JTypeSign;
 signExtender s1
 (
     .sign(rawIns[31]),
-    .IStypeSign(IStypeSign),
-    .BTypeSign(BTypeSign),
+    .ISBtypeSign(ISBtypeSign),
     .JTypeSign(JTypeSign)
 );
 
 // I type immediate
-assign immTypeI = {>>{IStypeSign, rawIns[31:20]}};
+assign immTypeI = {>>{ISBtypeSign, rawIns[31:20]}};
 
 // S (store) - type immediate
-assign immTypeS = {>>{IStypeSign, rawIns[31:25], rawIns[11:7]}};
+assign immTypeS = {>>{ISBtypeSign, rawIns[31:25], rawIns[11:7]}};
 
 // B (Branch) - type immediate
-assign immTypeB = {>>{BTypeSign, rawIns[31], rawIns[7], rawIns[30:25], rawIns[11:8], 1'd0}};
+assign immTypeB = {>>{ISBtypeSign, rawIns[31], rawIns[7], rawIns[30:25], rawIns[11:8], 1'd0}};
 
 // U (load upper) - type immediate
 assign immTypeU = {>>{rawIns[31:12], 12'd0}};
@@ -155,7 +153,7 @@ begin
                 ImmOut = immTypeB;
                 UsePC = 1;
                 UseImm = 1;
-                ALUCode = `CPY;
+                ALUCode = `ADD;
             end
 
         `LOAD:
