@@ -1,25 +1,53 @@
 // Due to byte array nature of RAM, each instruction needs to be split over 4 lines
-3e
-80
 00
-93 // addi x1 , x0, 1000
-7d
 00
-81
-13 // addi x2 , x1, 2000
-c1
-81
 01
-93 // addi x3 , x2, -1000
-83
+13 // li, x2, 0
+00
+50
 01
-82
-13 // addi x4 , x3, -2000
-3e
-82
-02
-93 // addi x5 , x4, 1000
+93 // li x3, 5
 00
+11
+01
+13 // addi x2, x2, 1
 00
+31
+54
+63 // ble x3, x2, 14
+fe
+df
+f0
+6f // jump (abs, not sure where)
 04
-67 // jalr x8, x0, 0
+50
+07
+93 // li x15, 69
+00
+50
+01
+13 // li, x2, 5
+00
+10
+04
+93 // li x9, 1
+40
+91
+01
+33 // sub x2, x2, x9
+00
+24
+d4
+63 // ble x2, x9, 44
+fd
+5f
+f0
+6f // jump (abs, not sure where)
+04
+50
+08
+13 // li x16, 69
+00
+00
+00
+67 // jalr x0, x0, x0
