@@ -9,7 +9,7 @@ module pcR32I #(parameter dataW = 32)
     input logic AlwaysBranch,                      // High if PC should unconditionally branch
     input logic AbsoluteBranch,                    // High if BranchAddr should be treated as an absolute jump
     input logic InsCacheStall,                     // Signal to stall PC for period of refreshing instruction cache
-    input logic [2:0] BranchType,                // indicates type of branch to take, see branchcodes.sv
+    input logic [2:0] BranchType,                  // indicates type of branch to take, see branchcodes.sv
     input logic signed [dataW-1:0] BranchAddr,     // address to add/set to the PC when branching
     output logic signed [dataW-1:0] ProgAddr       // output program address
 );

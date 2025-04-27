@@ -10,7 +10,7 @@
 //    li x9, 1
 //    loop_2:
 //    sub x2, x2, x9
-//    blt x2, x9, loop_2
+//    bgt x9, x2, loop_2
 //    li x16, 69
 //    j 0
 00
