@@ -1,6 +1,6 @@
 // Due to byte array nature of RAM, each instruction needs to be split over 4 lines
 // assembler used: https://riscvasm.lucasteske.dev/#
-//  addi x2, x0, 0
+//  li x2, 0
 //  li x3, 5
 //  loop_1:
 //  addi x2, x2, 1
