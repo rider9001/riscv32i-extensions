@@ -17,7 +17,7 @@ module pcR32I #(parameter dataW = 32)
 timeunit 1ns; timeprecision 10ps;
 
 wire [7:0] BranchStatus;
-assign BranchStatus = {EQ, NE, 1'b0, 1'b0, LT, GE, LTU, GEU};
+assign BranchStatus = {GEU, LTU, GE, LT, 1'b0, 1'b0, NE, EQ};
 
 // Branch offset/addr always has the last bit reset
 logic [dataW-1:0] EvenAddr;
