@@ -1,18 +1,18 @@
 // Due to byte array nature of RAM, each instruction needs to be split over 4 lines
 // assembler used: https://riscvasm.lucasteske.dev/#
-//    addi x2, x0, 0
-//    li x3, 5
-//    loop_1:
-//    addi x2, x2, 1
-//    blt x2, x3, loop_1
-//    li x15, 69
-//    li x2, 5
-//    li x9, 1
-//    loop_2:
-//    sub x2, x2, x9
-//    bgt x9, x2, loop_2
-//    li x16, 69
-//    j 0
+//  addi x2, x0, 0
+//  li x3, 5
+//  loop_1:
+//  addi x2, x2, 1
+//  blt x2, x3, loop_1
+//  li x15, 69
+//  li x2, 5
+//  li x9, 1
+//  loop_2:
+//  sub x2, x2, x9
+//  bgt x2, x9, loop_2
+//  li x16, 69
+//  j 0
 00
 00
 01
@@ -46,8 +46,8 @@ e3
 01
 33
 fe
-91
-4e
+24
+ce
 e3
 04
 50
