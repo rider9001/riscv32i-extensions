@@ -121,7 +121,7 @@ pcR32I #(dataW) pc1
 );
 
 // Ins cache definition
-InsCacheR32I #(dataW, CachedIns) InsC1
+InsCacheR32I #(dataW, RAMAddrSize, CachedIns) InsC1
 (
     .clock(clock),
     .reset(reset),
