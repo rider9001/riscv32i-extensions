@@ -8,7 +8,7 @@ module signExtender
 
 timeunit 1ns; timeprecision 10ps;
 
-assign ISBtypeSign = sign ? 20'b1111_1111_1111_1111_11 : 20'd0;
-assign JTypeSign = sign ? 11'b1111_1111_111 : 11'd0;
+assign ISBtypeSign = sign ? 20'b1111_1111_1111_1111_1111 : 20'b0;
+assign JTypeSign = sign ? 11'b1111_1111_111 : 11'b0;
 
 endmodule

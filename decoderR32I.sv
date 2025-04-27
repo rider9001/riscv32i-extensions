@@ -68,13 +68,13 @@ assign immTypeI = {>>{ISBtypeSign, rawIns[31:20]}};
 assign immTypeS = {>>{ISBtypeSign, rawIns[31:25], rawIns[11:7]}};
 
 // B (Branch) - type immediate
-assign immTypeB = {>>{ISBtypeSign, rawIns[31], rawIns[7], rawIns[30:25], rawIns[11:8], 1'd0}};
+assign immTypeB = {>>{ISBtypeSign, rawIns[31], rawIns[7], rawIns[30:25], rawIns[11:8], 1'b0}};
 
 // U (load upper) - type immediate
-assign immTypeU = {>>{rawIns[31:12], 12'd0}};
+assign immTypeU = {>>{rawIns[31:12], 12'b0}};
 
 // J (jump) - type immediate
-assign immTypeJ = {>>{JTypeSign, rawIns[31], rawIns[19:12], rawIns[20], rawIns[30:21], 1'd0}};
+assign immTypeJ = {>>{JTypeSign, rawIns[31], rawIns[19:12], rawIns[20], rawIns[30:21], 1'b0}};
 
 always_comb
 begin
