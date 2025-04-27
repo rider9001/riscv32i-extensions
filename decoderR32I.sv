@@ -150,6 +150,7 @@ begin
         `BRANCH:
             begin
                 TestBranch = 1;
+                AbsoluteBranch = 1;
                 ImmOut = immTypeB;
                 UsePC = 1;
                 UseImm = 1;
