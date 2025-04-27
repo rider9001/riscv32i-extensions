@@ -1,13 +1,13 @@
 // Instruction cache for 32 bit wide RSICV instructions
 // Capable of commanding PC to stall in order to refresh cache
 `include "instructionCodesR32I.sv"
-module InsCacheR32I #(parameter dataW = 32, parameter CachedIns = 32)
+module InsCacheR32I #(parameter dataW = 32, parameter RAMAddrSize = 16, parameter CachedIns = 32)
 (
     input logic clock, reset,
     input logic [dataW-1:0] ProgAddr,                       // Input program address
     input logic [dataW-1:0] InsReadInp,                     // Incoming instructions from RAM
     output logic InsCacheStall,                             // High when the instruction cache is refreshing and PC must halt
-    output logic [dataW-1:0] InsCacheReadAddr,              // Address to read instructions from RAM
+    output logic [RAMAddrSize-1:0] InsCacheReadAddr,        // Address to read instructions from RAM
     output logic [dataW-1:0] OutputIns                      // Output instruction to decoder
 );
 
