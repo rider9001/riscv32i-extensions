@@ -25,7 +25,7 @@ module decoderR32I #(parameter dataW = 32)
     output logic [dataW-1:0] ImmOut,                                        // Decoded immediate
     // RAM control logic
     output logic RAMWriteControl,                                           // Flag to indicate to RAM to write incoming value
-    output logic RAMRead                                                    // Flag to switch ALU output into RAMBus
+    output logic RAMRegRead                                                 // Flag to switch ALU output into RAMBus
 );
 
 timeunit 1ns; timeprecision 10ps;
@@ -91,7 +91,7 @@ begin
     ALUCode = 0;
     ImmOut = immTypeI;
     RAMWriteControl = 0;
-    RAMRead = 0;
+    RAMRegRead = 0;
 
     case (opcode)
         `OPPI:
@@ -164,7 +164,7 @@ begin
                 ImmOut = immTypeI;
                 ALUCode = `ADD;
                 UseImm = 1;
-                RAMRead = 1;
+                RAMRegRead = 1;
             end
 
         `STORE:
@@ -173,7 +173,7 @@ begin
                 ALUCode = `ADD;
                 UseImm = 1;
                 RAMWriteControl = 1;
-                RAMRead = 1;
+                RAMRegRead = 1;
             end
     endcase
 end

@@ -97,7 +97,7 @@ decoderR32I #(dataW) dec1
     .ALUCode(ALUCode),
     .ImmOut(ImmOut),
     .RAMWriteControl(RAMWriteControl),
-    .RAMRead(RAMRead)
+    .RAMRegRead(RAMRegRead)
 );
 
 // PC definition
