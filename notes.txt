@@ -6,3 +6,5 @@ Version of ALU output unaltered by +4 goes back to PC
 --ALU--
 first input can be swtiched between current pc and register 1 output
 second input can be swtiched between decoded immediate and register 2 output
+
+// Test
