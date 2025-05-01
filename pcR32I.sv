@@ -1,5 +1,6 @@
 // RISCV32I PC module
 // RISCV only supports relavtive jumps (JAL) and absolute jumps (JALR)
+// Branches are implemented as absolute jumps that use the relative result from the ALU
 // Currently only supports 32-bit instruction increments
 module pcR32I #(parameter dataW = 32)
 (
