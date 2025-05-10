@@ -96,8 +96,8 @@ begin
             begin
                 ImmOut = immTypeI;
                 case (funct3)
-                    5: ALUCode = {>>{rawIns[30], funct3}};
-                    default: ALUCode = {>>{1'b0, funct3}};
+                    5: ALUCode = {>>{1'b0, rawIns[30], funct3}};
+                    default: ALUCode = {>>{2'b0, funct3}};
                 endcase
                 RegWriteControl = 1;
                 UseImm = 1;
@@ -105,7 +105,7 @@ begin
 
         `OPPR:
             begin
-                ALUCode = {>>{rawIns[30], funct3}};
+                ALUCode = {>>{rawIns[25], rawIns[30], funct3}};
                 RegWriteControl = 1;
             end
 

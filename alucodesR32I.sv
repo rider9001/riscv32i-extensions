@@ -8,51 +8,71 @@
 
 // ADD, code used for ADD and ADDI ins
 // Adds two operands
-`define ADD     4'd0
+`define ADD     5'd0
 
 // SLT, set-less-than, used for STLI and STL
 // result is 1 if operand1 < operand2 signed comparison, else 0
-`define SLT     4'd2
+`define SLT     5'd2
 
 // SLTU, set-less-than-unsigned, used for STLIU and STLU
 // result is 1 if operand1 < operand2 unsigned comparison, else 0
-`define SLTU    4'd3
+`define SLTU    5'd3
 
 // AND, logical and, used for AND and ANDI
 // logically ANDs two operands together
-`define AND     4'd7
+`define AND     5'd7
 
 // OR, logical or, used for OR and ORI
 // logically ORs two operands together
-`define OR      4'd6
+`define OR      5'd6
 
 // XOR, logical xor, used for XOR and XORI
 // logically XORs two operands together
-`define XOR     4'd4
+`define XOR     5'd4
 
 // SLL, shift-left-logical, used for SLL and SLLI
 // logically shifts first operand left by second
 // (zeros shifted into lower bits)
 // Will only use lower 5 bits of second operand
-`define SLL     4'd1
+`define SLL     5'd1
 
 // SRL, shift-right-logical, used for SRL and SRLI
 // logically shifts first operand right by second
 // (zeros shifted into upper bits)
 // Will only use lower 5 bits of second operand
-`define SRL     4'd5
+`define SRL     5'd5
 
 // SRA, shift-right-arithemetic, used for SRA and SRAI
 // arithemetically shifts first operand right by second
 // (sign bit is shifted into upper bits)
 // Will only use lower 5 bits of second operand
-`define SRA     4'd13
+`define SRA     5'd13
 // NOTE: on immediate opcode, shares a funct3 with SRL, system will include rawIns[30] as MSB of opcode
 
 // SUB, subtract, used for SUB
 // subtracts the first operand from the second
 // only exists as an R-type instruction
-`define SUB     4'd8
+`define SUB     5'd8
+
+// MUL, multiply signedxsigned, used for MUL
+// multplies two input numbers as signed integers
+// outputs lower 32 bits of result
+`define MUL     5'd16
+
+// MULH, multiply signedxsigned upper, used for MULH
+// multplies two input numbers as signed integers
+// outputs upper 32 bits of result
+`define MULH    5'd17
+
+// MULHU, multiply unsignedxunsigned upper, used for MULHU
+// multplies two input numbers as unsigned integers
+// outputs upper 32 bits of result
+`define MULHU   5'd19
+
+// MULHSU, multiply signedxunsigned upper, used for MULHSU
+// multplies two input numbers as signed and unsigned in turn
+// outputs upper 32 bits of result
+`define MULHSU  5'd18
 
 // CPY, repeats the value in operand 2, used for LUI
-`define CPY     4'b1111
+`define CPY     5'b11111
