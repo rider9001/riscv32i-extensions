@@ -1,6 +1,7 @@
 // RISCV32I ALU module
 // Doesnt make distinctions based on immediate/register nature of inputs
 `include "alucodesR32I.sv" // Baseline set, opcodes[0-9]
+`include "mul_modes.sv"    // codes for multiplier
 module aluR32I #(parameter dataW = 32)
 (
     input logic signed [dataW-1:0] A, B,    // Two input operands
@@ -71,13 +72,13 @@ begin
                 mulCode = `MULHC;
             end
 
-        `MULHU
+        `MULHU:
             begin
                 result = mulRes;
                 mulCode = `MULHUC;
             end
 
-        `MULHSU
+        `MULHSU:
             begin
                 result = mulRes;
                 mulCode = `MULHSUC;

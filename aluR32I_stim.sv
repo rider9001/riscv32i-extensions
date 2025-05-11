@@ -17,7 +17,7 @@ parameter dataW = 32;
 
 // inputs
 logic signed [dataW-1:0] A,B;
-logic [3:0] alucode;
+logic [4:0] alucode;
 
 // outputs
 logic signed [dataW-1:0] result;
@@ -26,7 +26,7 @@ aluR32I alu1
 (
     .A(A),
     .B(B),
-    .alucode(alucode),
+    .ALUCode(alucode),
     .result(result)
 );
 
@@ -85,7 +85,7 @@ begin
     #CLOCK_P
     alucode = `MULH;
     #CLOCK_P
-    alcode = `MULHU;
+    alucode = `MULHU;
     #CLOCK_P
     alucode = `MULHSU;
     $finish;$stop;

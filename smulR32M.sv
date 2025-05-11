@@ -9,6 +9,8 @@ module smulR32M #(parameter dataW = 32)
     output logic [dataW-1:0] out                // Output result
 );
 
+timeunit 1ns; timeprecision 10ps;
+
 // Multiplication results 64 bits wide
 logic [(dataW*2)-1:0] signedMul, unsignedMul, signedunsignedMul;
 
