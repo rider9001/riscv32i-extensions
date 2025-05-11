@@ -95,6 +95,21 @@ begin
     A = 32'hFFFEB37D; // (-85123)
     // Expected result = 0xFFFD3F2E
     #CLOCK_P
+    A = 18;
+    B = 4;
+    alucode = `DIV;
+    // Expected result = 4
+    #CLOCK_P
+    alucode = `REM;
+    // Expected result = 2
+    #CLOCK_P
+    B = -4;
+    alucode = `DIV;
+    // Expected result = -4
+    #CLOCK_P
+    alucode = `REM;
+    // Expected result = -2
+    #CLOCK_P
     $finish;$stop;
 end
 

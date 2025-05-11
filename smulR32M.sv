@@ -1,6 +1,6 @@
 // RISCV32M multiplication module
-// Performs all signed and unsigned integer multiplications outline in M extension
-`include "mul_modes.sv"
+// Performs all signed and unsigned integer multiplications outlined in the M extension
+`include "mul_codes.sv"
 module smulR32M #(parameter dataW = 32)
 (
     input logic signed [dataW-1:0] M, Q,        // Signed number inputs, M = multiplier, Q = multiplicand
@@ -11,23 +11,16 @@ module smulR32M #(parameter dataW = 32)
 
 timeunit 1ns; timeprecision 10ps;
 
-// Multiplication results 64 bits wide
-logic [(dataW*2)-1:0] signedMul, unsignedMul, signedunsignedMul;
-
-assign signedMul = M * Q;
-assign unsignedMul = UM * UQ;
-assign signedunsignedMul = UM * Q;
-
 always_comb
 begin
     case (mulCode)
-        `MULC:       out = signedMul[dataW-1:0];
+        `MULC:       out = (M * Q)[dataW-1:0];
 
-        `MULHC:      out = signedMul[(dataW*2)-1:dataW];
+        `MULHC:      out = (M * Q)[(dataW*2)-1:dataW];
 
-        `MULHUC:     out = unsignedMul[(dataW*2)-1:dataW];
+        `MULHUC:     out = (UM * UQ)[(dataW*2)-1:dataW];
 
-        `MULHSUC:    out = signedunsignedMul[(dataW*2)-1:dataW];
+        `MULHSUC:    out = (UM * Q)[(dataW*2)-1:dataW];
     endcase
 end
 

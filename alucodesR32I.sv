@@ -6,6 +6,8 @@
 // input switching performed by decoder
 // decoding immediates done via decoder switching
 
+// --- Base R32I code functions ---
+
 // ADD, code used for ADD and ADDI ins
 // Adds two operands
 `define ADD     5'd0
@@ -54,6 +56,11 @@
 // only exists as an R-type instruction
 `define SUB     5'd8
 
+// CPY, repeats the value in operand 2, used for LUI
+`define CPY     5'b11111
+
+// --- M extension codes ---
+
 // MUL, multiply signed x signed, used for MUL
 // multplies two input numbers as signed integers
 // outputs lower 32 bits of result
@@ -64,15 +71,32 @@
 // outputs upper 32 bits of result
 `define MULH    5'd17
 
-// MULHU, multiply unsigned x unsigned upper, used for MULHU
-// multplies two input numbers as unsigned integers
-// outputs upper 32 bits of result
-`define MULHU   5'd19
-
 // MULHSU, multiply signed x unsigned upper, used for MULHSU
 // multplies two input numbers as signed and unsigned in turn
 // outputs upper 32 bits of result
 `define MULHSU  5'd18
 
-// CPY, repeats the value in operand 2, used for LUI
-`define CPY     5'b11111
+// MULHU, multiply unsigned x unsigned upper, used for MULHU
+// multplies two input numbers as unsigned integers
+// outputs upper 32 bits of result
+`define MULHU   5'd19
+
+// DIV, division signed, used for DIV
+// divides B / A as signed integers
+// returns quotient of result
+`define DIV     5'd20
+
+// DIVU, division unsigned, used for DIVU
+// divides B / A as unsigned integers
+// returns quotient of result
+`define DIVU    5'd21
+
+// REM, remainder signed, used for REM
+// divides B / A as signed integers
+// returns remainder of result
+`define REM     5'd22
+
+// REM, remainder unsigned, used for REMU
+// divides B / A as unsigned integers
+// returns remainder of result
+`define REMU    5'd23

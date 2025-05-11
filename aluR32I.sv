@@ -2,6 +2,7 @@
 // Doesnt make distinctions based on immediate/register nature of inputs
 `include "alucodesR32I.sv" // Baseline set, opcodes[0-9]
 `include "mul_modes.sv"    // codes for multiplier
+`include "div_codes.sv"    // codes for divider
 module aluR32I #(parameter dataW = 32)
 (
     input logic signed [dataW-1:0] A, B,    // Two input operands
@@ -16,11 +17,11 @@ logic [dataW-1:0] UA, UB;
 assign UA = A;
 assign UB = B;
 
-// control signals for multiplier
-logic [1:0] mulCode;
+// control signals for multiplier and divider
+logic [1:0] mulCode, divCode;
 
-// multipler output
-logic [dataW-1:0] mulRes;
+// multipler and divider output
+logic [dataW-1:0] mulRes, divRes;
 
 // multiplier module, in ISA rs1 is multiplicand, rs2 is multiplier
 smulR32M smul1
@@ -33,9 +34,21 @@ smulR32M smul1
     .out(mulRes)
 );
 
+// divider module, in ISA rs1 is dividend and rs2 is divisor (rs1 / rs2)
+sdivR32M sdiv1
+(
+    .DivD(A),
+    .DivI(B),
+    .UDivD(UA),
+    .UDivI(UB),
+    .divCode(divCode),
+    .out(divRes)
+);
+
 always_comb
 begin
     mulCode = 0;
+    divCode = 0;
 
     case (ALUCode)
         `ADD: result = A + B;
@@ -83,6 +96,32 @@ begin
                 result = mulRes;
                 mulCode = `MULHSUC;
             end
+
+        `DIV:
+            begin
+                result = divRes;
+                divCode = `DIVC;
+            end
+
+        `DIVU:
+            begin
+                result = divRes;
+                divCode = `DIVUC;
+            end
+
+        `REM:
+            begin
+                result = divRes;
+                divCode = `REMC;
+            end
+
+        `REMU:
+            begin
+                result = divRes;
+                divCode = `REMUC;
+            end
+
+        default:    out = 32'bx;
     endcase
 end
 
