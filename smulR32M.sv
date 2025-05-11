@@ -16,7 +16,7 @@ logic [(dataW*2)-1:0] signedMul, unsignedMul, signedunsignedMul;
 
 assign signedMul = M * Q;
 assign unsignedMul = UM * UQ;
-assign signedunsignedMul = M * UQ;
+assign signedunsignedMul = UM * Q;
 
 always_comb
 begin

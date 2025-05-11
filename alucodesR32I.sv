@@ -54,22 +54,22 @@
 // only exists as an R-type instruction
 `define SUB     5'd8
 
-// MUL, multiply signedxsigned, used for MUL
+// MUL, multiply signed x signed, used for MUL
 // multplies two input numbers as signed integers
 // outputs lower 32 bits of result
 `define MUL     5'd16
 
-// MULH, multiply signedxsigned upper, used for MULH
+// MULH, multiply signed xs igned upper, used for MULH
 // multplies two input numbers as signed integers
 // outputs upper 32 bits of result
 `define MULH    5'd17
 
-// MULHU, multiply unsignedxunsigned upper, used for MULHU
+// MULHU, multiply unsigned x unsigned upper, used for MULHU
 // multplies two input numbers as unsigned integers
 // outputs upper 32 bits of result
 `define MULHU   5'd19
 
-// MULHSU, multiply signedxunsigned upper, used for MULHSU
+// MULHSU, multiply signed x unsigned upper, used for MULHSU
 // multplies two input numbers as signed and unsigned in turn
 // outputs upper 32 bits of result
 `define MULHSU  5'd18
