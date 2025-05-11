@@ -87,13 +87,13 @@ begin
     // Expected result = 0xFFFFFFFE
     #CLOCK_P
     alucode = `MULHU;
-    // Expected result = 0x00000001
+    // Expected result = 0x00014C81
     #CLOCK_P
     alucode = `MULHSU;
     // Expected result = 0x00000001
     #CLOCK_P
     A = 32'hFFFEB37D; // (-85123)
-    // Expected result = 0xFFFFFFFE
+    // Expected result = 0xFFFD3F2E
     #CLOCK_P
     $finish;$stop;
 end
