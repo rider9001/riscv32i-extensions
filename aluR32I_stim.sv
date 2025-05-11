@@ -92,7 +92,7 @@ begin
     alucode = `MULHSU;
     // Expected result = 0x00000001
     #CLOCK_P
-    A = 32'hFFFEB37D // (-85123)
+    A = 32'hFFFEB37D; // (-85123)
     // Expected result = 0xFFFFFFFE
     #CLOCK_P
     $finish;$stop;
