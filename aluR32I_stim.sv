@@ -77,6 +77,17 @@ begin
     A = -78;
     B = -901;
     #CLOCK_P
+    A = 2;
+    B = 4;
+    alucode = `MUL;
+    #CLOCK_P
+    B = -4;
+    #CLOCK_P
+    alucode = `MULH;
+    #CLOCK_P
+    alcode = `MULHU;
+    #CLOCK_P
+    alucode = `MULHSU;
     $finish;$stop;
 end
 
