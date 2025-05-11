@@ -88,6 +88,7 @@ begin
     alucode = `MULHU;
     #CLOCK_P
     alucode = `MULHSU;
+    #CLOCK_P
     $finish;$stop;
 end
 
