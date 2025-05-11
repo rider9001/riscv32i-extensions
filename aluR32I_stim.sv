@@ -77,17 +77,23 @@ begin
     A = -78;
     B = -901;
     #CLOCK_P
-    A = 2;
-    B = 4;
+    // Multiplication test uses 85123(0x00014C83) x -95312 (0xFFFE8BB0)
+    A = 32'h00014C83;
+    B = 32'hFFFE8BB0;
+    // Expected result = 0x1C69BB10
     alucode = `MUL;
     #CLOCK_P
-    B = -4;
-    #CLOCK_P
     alucode = `MULH;
+    // Expected result = 0xFFFFFFFE
     #CLOCK_P
     alucode = `MULHU;
+    // Expected result = 0x00000001
     #CLOCK_P
     alucode = `MULHSU;
+    // Expected result = 0x00000001
+    #CLOCK_P
+    A = 32'hFFFEB37D // (-85123)
+    // Expected result = 0xFFFFFFFE
     #CLOCK_P
     $finish;$stop;
 end
