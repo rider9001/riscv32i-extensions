@@ -108,10 +108,14 @@ begin
     // Expected result = -4
     #CLOCK_P
     alucode = `REM;
-    // Expected result = -2
+    // Expected result = 2
     #CLOCK_P
     B = 4;
     A = -18;
+    // Expected result = -2
+    #CLOCK_P
+    B = -4;
+    // Expected result = 2
     #CLOCK_P
     $finish;$stop;
 end
