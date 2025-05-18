@@ -110,6 +110,9 @@ begin
     alucode = `REM;
     // Expected result = -2
     #CLOCK_P
+    B = 4;
+    A = -18;
+    #CLOCK_P
     $finish;$stop;
 end
 
