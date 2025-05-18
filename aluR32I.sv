@@ -121,7 +121,7 @@ begin
                 divCode = `REMUC;
             end
 
-        default:    out = 32'bx;
+        default: result = 32'bx;
     endcase
 end
 
