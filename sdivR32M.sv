@@ -1,7 +1,7 @@
 // RISCV32M division module
 // Performs all signed and unsigned integer divisions outlined in the M extension
 `include "div_codes.sv"
-module smdivR32M #(parameter dataW = 32)
+module sdivR32M #(parameter dataW = 32)
 (
     input logic signed [dataW-1:0] DivD, DivI,  // Signed number inputs, DivD = Dividend, DivI = Divisor
     input logic [dataW-1:0] UDivD, UDivI,       // Unsigned number inputs
