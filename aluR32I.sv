@@ -1,7 +1,7 @@
 // RISCV32I ALU module
 // Doesnt make distinctions based on immediate/register nature of inputs
 `include "alucodesR32I.sv" // Baseline set, opcodes[0-9]
-`include "mul_modes.sv"    // codes for multiplier
+`include "mul_codes.sv"    // codes for multiplier
 `include "div_codes.sv"    // codes for divider
 module aluR32I #(parameter dataW = 32)
 (
