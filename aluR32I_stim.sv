@@ -115,7 +115,18 @@ begin
     // Expected result = -2
     #CLOCK_P
     B = -4;
-    // Expected result = 2
+    // Expected result = -2
+    #CLOCK_P
+    alucode = `DIVU;
+    A = -90000;
+    B = 45;
+    #CLOCK_P
+    B = -45;
+    #CLOCK_P
+    alucode = `REMU;
+    B = 45;
+    #CLOCK_P
+    B = -45;
     #CLOCK_P
     $finish;$stop;
 end

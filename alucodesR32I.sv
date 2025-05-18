@@ -82,21 +82,22 @@
 `define MULHU   5'd19
 
 // DIV, division signed, used for DIV
-// divides B / A as signed integers
+// divides A / B as signed integers
 // returns quotient of result
 `define DIV     5'd20
 
 // DIVU, division unsigned, used for DIVU
-// divides B / A as unsigned integers
+// divides A / B as unsigned integers
 // returns quotient of result
 `define DIVU    5'd21
 
 // REM, remainder signed, used for REM
-// divides B / A as signed integers
+// divides A / B as signed integers
 // returns remainder of result
+// Note: Will 'ignore' negative dividends (e.g: 18 % -4 = 2 = 18 % 4)
 `define REM     5'd22
 
-// REM, remainder unsigned, used for REMU
-// divides B / A as unsigned integers
+// REMU, remainder unsigned, used for REMU
+// divides A / B as unsigned integers
 // returns remainder of result
 `define REMU    5'd23
