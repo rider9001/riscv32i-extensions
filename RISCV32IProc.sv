@@ -59,7 +59,7 @@ wire RAMWriteControl;
 wire UseImm, UsePC;
 
 // Decoder -> ALU code
-wire [3:0] ALUCode;
+wire [4:0] ALUCode;
 
 // Decoder -> ALU immdiate wire
 wire [dataW-1:0] ImmOut;
