@@ -21,7 +21,7 @@ module decoderR32I #(parameter dataW = 32)
     // ALU control logic
     output logic UseImm,                                                    // ALU input 2 should be switched from reg2 to ImmOut
     output logic UsePC,                                                     // ALU input 1 should be switched from reg1 to ProgAddr
-    output logic [3:0] ALUCode,                                             // ALU control code to select operation
+    output logic [5:0] ALUCode,                                             // ALU control code to select operation
     output logic [dataW-1:0] ImmOut,                                        // Decoded immediate
     // RAM control logic
     output logic RAMWriteControl,                                           // Flag to indicate to RAM to write incoming value
@@ -97,7 +97,7 @@ begin
                 ImmOut = immTypeI;
                 case (funct3)
                     5: ALUCode = {>>{1'b0, rawIns[30], funct3}};
-                    default: ALUCode = {>>{2'b0, funct3}};
+                    default: ALUCode = {>>{3'b0, funct3}};
                 endcase
                 RegWriteControl = 1;
                 UseImm = 1;
