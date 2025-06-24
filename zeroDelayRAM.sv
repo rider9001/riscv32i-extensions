@@ -4,7 +4,7 @@
 module zeroDelayRAM #(
 parameter dataW = 32,
 parameter RAMAddrSize = 16,
-parameter ROMFile = "no_file_loaded.hex"
+parameter ROMFile = "no_file_loaded.mem"
 )
 (
     input logic clock, reset,

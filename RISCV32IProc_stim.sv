@@ -15,7 +15,7 @@ always begin clock = 0; #(CLOCK_P/2) clock = 1; #(CLOCK_P/2) clock = 0; end
 parameter dataW = 32;
 parameter RAMAddrSize = 16;
 parameter CachedIns = 32;
-parameter ROMFile = "progR32I.hex";
+parameter ROMFile = "progR32I.mem";
 
 // definition
 RISCV32IProc #(dataW, RAMAddrSize, CachedIns, ROMFile) proc1
